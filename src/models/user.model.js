@@ -23,8 +23,8 @@ const userSchema = new Schema({
         unique: true,
     },
     password: {
-        type: [String, "Password must be reqiured"],
-        required: true
+        type: String,
+        required: [true, "Password must be reqiured"]
 
     },
     avatar: {
@@ -72,9 +72,7 @@ userSchema.methods.generateAccessToken = function () {
 userSchema.methods.RefreshAccessToken = function () {
     return jwt.sign({
         _id: this._id,
-        username: this.username,
-        email: this.email,
-        fullname: this.fullname
+     
     },
         process.env.REFRESH_TOKEN_SECRET,
         {
