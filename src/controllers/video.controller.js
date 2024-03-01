@@ -145,7 +145,7 @@ const updateVideo = asyncHandler(async (req, res) => {
         const video = await Video.findById(videoId)
         const {title , description} = req.body
         if
-        (!(thumbnailFile || !(!title || title?.trim() === "") || !(!description || description?.trim() === ""))
+        (!(thumbnail || !(!title || title?.trim() === "") || !(!description || description?.trim() === ""))
         ){
             throw new ApiError(400 ,"Fields must be Required")
         }
@@ -170,7 +170,7 @@ const updateVideo = asyncHandler(async (req, res) => {
         let thumbnailUploadOnCloudinary;
 
         if(thumbnail){
-        const deletedFile = await deleteOnCloudinary(previousVideo.Thumbnail?.public_id)
+        const deletedFile = await deleteOnCloudinary(previousVideo.thumbnail?.public_id)
         }
         
         
